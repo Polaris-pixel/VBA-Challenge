@@ -36,6 +36,13 @@ Sub multiyear_stockdata()
     
     ws.Cells(1, 12).Value = "Percent Change"
 
+
+    ws.Columns("J").NumberFormat = "#,##0"    
+                
+    ws.Columns("K").NumberFormat = "$#,##0.00_);($#,##0.00)"    
+            
+    ws.Columns("L").NumberFormat = "0.00%"
+
        
     
     
@@ -54,14 +61,13 @@ Sub multiyear_stockdata()
             
             
             
-            close_price = ws.Cells(i, 6).Value
-            
+            close_price = ws.Cells(i, 6).Value            
             
             yearly_change = close_price - open_price
            
             ws.Cells(display_row, 11).Value = yearly_change
             
-            ws.Cells(display_row, 11).NumberFormat = "0.00"
+            
            
            
                 If open_price = 0 Then
@@ -74,15 +80,13 @@ Sub multiyear_stockdata()
               
                     ws.Cells(display_row, 12).Value = percent_change
                     
-                    ws.Columns("L").NumberFormat = "0.00%"
-              
-             
+                
                 End If
+                
             
             
              open_price = ws.Cells(i + 1, 3).Value
                              
-              
              display_row = display_row + 1
             
              total_volume = 0
@@ -108,6 +112,13 @@ Sub multiyear_stockdata()
                 ws.Cells(1, 15).Value = "Ticker"
                 
                 ws.Cells(1, 16).Value = "Value"
+                
+                
+                ws.Cells(2, 16).NumberFormat = "0.00%"
+
+                ws.Cells(3, 16).NumberFormat = "0.00%"
+                
+                ws.Cells(4, 16).NumberFormat = "#,##0"
 
                 
                 ws.Cells(2, 16).Value = Application.WorksheetFunction.Max(ws.Range("L:L"))
@@ -116,9 +127,7 @@ Sub multiyear_stockdata()
                 
                 ws.Cells(4, 16).Value = Application.WorksheetFunction.Max(ws.Range("J:J"))
                 
-                ws.Cells(2, 16).NumberFormat = "0.00%"
-
-                ws.Cells(3, 16).NumberFormat = "0.00%"
+                
                 
     
             Dim lastrow As Long
@@ -131,20 +140,20 @@ Sub multiyear_stockdata()
             
                 If ws.Cells(i, 12).Value = ws.Cells(2, 16).Value Then
                 
-                 ws.Cells(2, 15).Value = ws.Cells(i, 9)
+                    ws.Cells(2, 15).Value = ws.Cells(i, 9)
                  
                  
-                 ElseIf ws.Cells(i, 12).Value = ws.Cells(3, 16).Value Then
+                ElseIf ws.Cells(i, 12).Value = ws.Cells(3, 16).Value Then
                  
-                 ws.Cells(3, 15).Value = ws.Cells(i, 9)
-                 
-                 
-                 ElseIf ws.Cells(i, 10).Value = ws.Cells(4, 16).Value Then
-                 
-                 ws.Cells(4, 15).Value = ws.Cells(i, 9)
+                    ws.Cells(3, 15).Value = ws.Cells(i, 9)
                  
                  
-                 End If
+                ElseIf ws.Cells(i, 10).Value = ws.Cells(4, 16).Value Then
+                 
+                    ws.Cells(4, 15).Value = ws.Cells(i, 9)
+                 
+                 
+                End If
                  
 
 
